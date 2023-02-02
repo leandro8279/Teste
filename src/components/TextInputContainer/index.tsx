@@ -15,7 +15,7 @@ const TextInputContainer = ({ placeholder, value, setValue, keyboardType }) => {
       <TextInput
         style={{
           margin: 8,
-          padding: 8,
+          // padding: 8,
           width: "90%",
           textAlign: "center",
           fontSize: 16,
