@@ -12,7 +12,7 @@ export const useVideo = () => {
   const [localStream, setlocalStream] = useState(null);
   const [remoteStream, setRemoteStream] = useState(null);
   // This establishes your WebSocket connection
-  const socket = SocketIOClient("https://ed65-169-57-215-155.ngrok.io");
+  const socket = SocketIOClient("https://cced-169-57-215-155.ngrok.io");
   const peerConnection = useRef(
     new RTCPeerConnection({
       iceServers: [
@@ -40,14 +40,14 @@ export const useVideo = () => {
     //   otherUserId.current = data.callerId;
     //   setType("INCOMING_CALL");
     // });
-    // socket.on("callAnswered", (data) => {
-    //   // 7. When Alice gets Bob's session description, she sets that as the remote description with `setRemoteDescription` method.
-    //   remoteRTCMessage.current = data.rtcMessage;
-    //   peerConnection.current.setRemoteDescription(
-    //     new RTCSessionDescription(remoteRTCMessage.current)
-    //   );
-    //   setType("WEBRTC_ROOM");
-    // });
+    socket.on("callUser", (data) => {
+      // 7. Quando Alice obtém a descrição da sessão de Bob, ela a define como a descrição remota com o método `setRemoteDescription`.
+      remoteRTCMessage.current = data.signal;
+      peerConnection.current.setRemoteDescription(
+        new RTCSessionDescription(remoteRTCMessage.current)
+      );
+      setType("WEBRTC_ROOM");
+    });
     // socket.on("ICEcandidate", (data) => {
     //   let message = data.rtcMessage;
     //   // When Bob gets a candidate message from Alice, he calls `addIceCandidate` to add the candidate to the remote peer description.
@@ -129,34 +129,41 @@ export const useVideo = () => {
   async function processCall() {
     console.log(otherUserId.current);
 
-    // // 1. Alice runs the `createOffer` method for getting SDP.
-    const sessionDescription = await peerConnection.current.createOffer({
+    // 1. Alice executa o método `createOffer` para obter SDP.
+    const sessionDescription: RTCSessionDescription =
+      await peerConnection.current.createOffer({
+        offerToReceiveVideo: true,
+        offerToReceiveAudio: true,
+      });
+
+    console.log("create answer");
+
+    // 2. Alice define a descrição local usando `setLocalDescription`.
+    await peerConnection.current.setLocalDescription(sessionDescription);
+    // 3. Envie esta descrição de sessão para Bob uisng socket
+    socket.emit("callUser", {
+      userToCall: otherUserId.current,
+      signalData: sessionDescription,
+      from: callerId,
+      name: "Leandro Jose",
+    });
+  }
+  async function processAccept() {
+    // 4. Bob define a descrição, Alice o enviou como a descrição remota usando `setRemoteDescription()`
+    peerConnection.current.setRemoteDescription(
+      new RTCSessionDescription(remoteRTCMessage.current)
+    );
+    // 5. Bob executa o método `createAnswer`
+    const sessionDescription: any = await peerConnection.current.createAnswer({
       offerToReceiveVideo: true,
       offerToReceiveAudio: true,
     });
-    console.log(sessionDescription);
-
-    // // 2. Alice sets the local description using `setLocalDescription`.
-    // await peerConnection.current.setLocalDescription(sessionDescription);
-    // // 3. Send this session description to Bob uisng socket
-    // sendCall({
-    //   calleeId: otherUserId.current,
-    //   rtcMessage: sessionDescription,
-    // });
-  }
-  async function processAccept() {
-    // // 4. Bob sets the description, Alice sent him as the remote description using `setRemoteDescription()`
-    // peerConnection.current.setRemoteDescription(
-    //   new RTCSessionDescription(remoteRTCMessage.current)
-    // );
-    // // 5. Bob runs the `createAnswer` method
-    // const sessionDescription = await peerConnection.current.createAnswer();
-    // // 6. Bob sets that as the local description and sends it to Alice
-    // await peerConnection.current.setLocalDescription(sessionDescription);
-    // answerCall({
-    //   callerId: otherUserId.current,
-    //   rtcMessage: sessionDescription,
-    // });
+    // 6. Bob define isso como a descrição local e a envia para Alice
+    await peerConnection.current.setLocalDescription(sessionDescription);
+    answerCall({
+      to: otherUserId.current,
+      signal: sessionDescription,
+    });
   }
   function answerCall(data) {
     socket.emit("answerCall", data);
@@ -172,5 +179,6 @@ export const useVideo = () => {
     processCall,
     setType,
     type,
+    answerCall,
   };
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import {
   Platform,
   KeyboardAvoidingView,
@@ -15,6 +15,7 @@ import TextInputContainer from "./src/components/TextInputContainer";
 import IncomingCallScreen from "./src/screen/IncomingCallScreen";
 import OutgoingCallScreen from "./src/screen/OutgoingCallScreen";
 import { useVideo } from "./src/screen/useVideo";
+import WebrtcRoomScreen from "./src/screen/WebrtcRoomScreen";
 
 export default function App({}) {
   const { otherUserId, callerId, processAccept, processCall, setType, type } =
@@ -137,6 +138,8 @@ export default function App({}) {
         otherUserId,
         setType,
       });
+    case "WEBRTC_ROOM":
+      return WebrtcRoomScreen();
     default:
       return null;
   }
