@@ -18,8 +18,18 @@ import { useVideo } from "./src/screen/useVideo";
 import WebrtcRoomScreen from "./src/screen/WebrtcRoomScreen";
 
 export default function App({}) {
-  const { otherUserId, callerId, processAccept, processCall, setType, type } =
-    useVideo();
+  const {
+    otherUserId,
+    callerId,
+    processAccept,
+    processCall,
+    setType,
+    type,
+    localStream,
+    peerConnection,
+    remoteStream,
+    setlocalStream,
+  } = useVideo();
   const JoinScreen = () => {
     return (
       <KeyboardAvoidingView
@@ -139,7 +149,13 @@ export default function App({}) {
         setType,
       });
     case "WEBRTC_ROOM":
-      return WebrtcRoomScreen();
+      return WebrtcRoomScreen({
+        localStream,
+        peerConnection,
+        remoteStream,
+        setlocalStream,
+        setType,
+      });
     default:
       return null;
   }

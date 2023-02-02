@@ -33,6 +33,7 @@ export const useVideo = () => {
   useEffect(() => {
     socket.on("connected", (id) => setCallerId(id));
   }, []);
+  console.log("ID =", callerId);
 
   useEffect(() => {
     // socket.on("newCall", (data) => {
@@ -41,6 +42,8 @@ export const useVideo = () => {
     //   setType("INCOMING_CALL");
     // });
     socket.on("callUser", (data) => {
+      console.log("callUser");
+
       // 7. Quando Alice obtém a descrição da sessão de Bob, ela a define como a descrição remota com o método `setRemoteDescription`.
       remoteRTCMessage.current = data.signal;
       peerConnection.current.setRemoteDescription(
@@ -180,5 +183,9 @@ export const useVideo = () => {
     setType,
     type,
     answerCall,
+    localStream,
+    peerConnection,
+    remoteStream,
+    setlocalStream,
   };
 };
