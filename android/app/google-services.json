@@ -1,0 +1,104 @@
+{
+  "project_info": {
+    "project_number": "987903990188",
+    "firebase_url": "https://olxapp-ec84b.firebaseio.com",
+    "project_id": "olxapp-ec84b",
+    "storage_bucket": "olxapp-ec84b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987903990188:android:dd890e2445ea2a4930c209",
+        "android_client_info": {
+          "package_name": "com.example.loja_virtual"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVlcErGVOPNK04-T35JjGhzhv52Ru0kyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987903990188-132s6k5a2dkude559ftfg26tkav9g19a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "987903990188-t9p5e35mn1v47fs82hgfmvc0qkgh7269.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lojaVirtual"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987903990188:android:257ed2b4caceafbe30c209",
+        "android_client_info": {
+          "package_name": "com.leandro8279.WebRTCEAS"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVlcErGVOPNK04-T35JjGhzhv52Ru0kyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987903990188-132s6k5a2dkude559ftfg26tkav9g19a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "987903990188-t9p5e35mn1v47fs82hgfmvc0qkgh7269.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lojaVirtual"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987903990188:android:0b9df8984c138f1430c209",
+        "android_client_info": {
+          "package_name": "com.teste"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVlcErGVOPNK04-T35JjGhzhv52Ru0kyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987903990188-132s6k5a2dkude559ftfg26tkav9g19a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "987903990188-t9p5e35mn1v47fs82hgfmvc0qkgh7269.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lojaVirtual"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
