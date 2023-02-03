@@ -5575,7 +5575,7 @@ react-native-webrtc@*:
     event-target-shim "6.0.2"
     tar "6.1.11"
 
-react-native-webrtc@^1.100.1:
+react-native-webrtc@^1.94.2:
   version "1.106.1"
   resolved "https://registry.yarnpkg.com/react-native-webrtc/-/react-native-webrtc-1.106.1.tgz#31b18e8780bb927934ebddb5e03a8168cc6edf3c"
   integrity sha512-955gqWFdISARz9D4hmnPzKQwpaU+AGqUbU+vBjzLCozUseSJ69tTQg2cShyPCBH6A1rwJQE+mrdjcpkeGbx3pQ==
